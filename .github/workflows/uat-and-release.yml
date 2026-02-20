@@ -13,7 +13,9 @@ permissions:
 
 jobs:
   build:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     strategy:
       matrix:
         include:
@@ -129,7 +131,9 @@ jobs:
           path: build/bin/localproxy
 
   build-arm32:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-22.04
     env:
       BOOST_VERSION: "1.87.0"

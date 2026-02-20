@@ -22,7 +22,9 @@ env:
 
 jobs:
   build-docker-image-ubuntu-amd64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -60,7 +62,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_UBUNTU }}:amd64-latest
           platforms: linux/amd64
   build-docker-image-ubuntu-arm64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -98,7 +102,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_UBUNTU }}:arm64-latest
           platforms: linux/arm64
   build-docker-image-ubuntu-armv7:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -136,7 +142,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_UBUNTU }}:armv7-latest
           platforms: linux/arm/v7
   build-docker-image-ubi8-amd64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -174,7 +182,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_UBI8 }}:amd64-latest
           platforms: linux/amd64
   build-docker-image-ubi8-arm64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -212,7 +222,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_UBI8 }}:arm64-latest
           platforms: linux/arm64
   build-docker-image-amazonlinux-amd64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -250,7 +262,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_AMAZONLINUX }}:amd64-latest
           platforms: linux/amd64
   build-docker-image-amazonlinux-arm64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -288,7 +302,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_AMAZONLINUX }}:arm64-latest
           platforms: linux/arm64
   build-docker-image-debian-amd64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -326,7 +342,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_DEBIAN }}:amd64-latest
           platforms: linux/amd64
   build-docker-image-debian-arm64:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -364,7 +382,9 @@ jobs:
             ${{ env.ECR_ACCOUNT_URL }}/${{ env.ECR_RELEASE_DEBIAN }}:arm64-latest
           platforms: linux/arm64
   build-image-manifest-ubuntu:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     needs:
       - build-docker-image-ubuntu-amd64
@@ -392,7 +412,9 @@ jobs:
           env.ECR_RELEASE_UBUNTU }}:armv7-latest
         shell: bash
   build-image-manifest-ubi8:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     needs:
       - build-docker-image-ubi8-amd64
@@ -415,7 +437,9 @@ jobs:
           env.ECR_RELEASE_UBI8 }}:amd64-latest ${{ env.ECR_ACCOUNT_URL }}/${{
           env.ECR_RELEASE_UBI8 }}:arm64-latest
   build-image-manifest-amazonlinux:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     needs:
       - build-docker-image-amazonlinux-amd64
@@ -438,7 +462,9 @@ jobs:
           env.ECR_RELEASE_AMAZONLINUX }}:amd64-latest ${{ env.ECR_ACCOUNT_URL
           }}/${{ env.ECR_RELEASE_AMAZONLINUX }}:arm64-latest
   build-image-manifest-debian:
-    if: github.repository == 'aws-samples/aws-iot-securetunneling-localproxy'
+    if:
+      github.repository == 'aws-samples/aws-iot-securetunneling-localproxy' &&
+      github.event.pull_request.head.repo.fork != true
     runs-on: ubuntu-latest
     needs:
       - build-docker-image-debian-amd64
